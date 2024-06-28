@@ -19,6 +19,11 @@ import DesignPatterns.Behavioral.strategyDesignPattern.DuckBehaviour.FlyRocketPo
  * packages) so that you have more maintained code.
  * 
  * See, class diagram for this duck app.
+ * 
+ * A main point is:
+ * Lets suppose, if in future there is a requirement come, we have to add WalkBehaviour to our Duck.
+ * So, our Duck class will be change and all classes that are extending to Duck class will be change.
+ * So, is it correct? or we can go with any other path?
  */
 
 public class Main {
