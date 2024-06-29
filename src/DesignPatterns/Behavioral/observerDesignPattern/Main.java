@@ -40,7 +40,13 @@ import DesignPatterns.Behavioral.observerDesignPattern.observerDisplays.Statisti
  *    update multiple methods in this approach, this is also not a good behaviour.
  * So, to overcome all of this, we need to change our code to make it more efficient.
  * 
+ * Solution for this approach:
+ * Here, the subjects are pushing data to the observers even they need it or not. and also with this
+ * if in future we need to append one more key like wind speed we need to change the whole code.
  * 
+ * So, for this we only make update() method without any params, and we will define getter methods in
+ * the Concrete Subject classes, so that Concrete observers can use them when they needed and which details
+ * they needed.
  */
 
 public class Main {
