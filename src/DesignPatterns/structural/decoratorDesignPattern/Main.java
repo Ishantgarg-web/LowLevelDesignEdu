@@ -3,6 +3,7 @@ package DesignPatterns.structural.decoratorDesignPattern;
 import DesignPatterns.structural.decoratorDesignPattern.BeverageTypes.Espresso;
 import DesignPatterns.structural.decoratorDesignPattern.BeverageTypes.HouseBlend;
 import DesignPatterns.structural.decoratorDesignPattern.condimentDecoratorTypes.Mocha;
+import DesignPatterns.structural.decoratorDesignPattern.condimentDecoratorTypes.Soy;
 import DesignPatterns.structural.decoratorDesignPattern.condimentDecoratorTypes.Whip;
 
 /**
@@ -38,18 +39,29 @@ import DesignPatterns.structural.decoratorDesignPattern.condimentDecoratorTypes.
  *  Concrete Components are -> HouseBlend, DarkRoast, Espresso, Decaf
  *  CondimentDecorator (have Beverage reference and getDescription()).
  *  all decorators such as Milk, Mocha, Soy, Whip are implement to the CondimentDecorator.
+ *  
+ *  // V0 completed.
+ *  
+ *  // New Requirement:
+ *  New feature came that is size for each coffee. like now, we have three size of coffee(tall(small),
+ *  grande(medium),venti(large)).
+ *  and now for each decorator we have cost for each size like for Soy, cost for tall(.10), grande(0.15),
+ *  venti(0.20).
+ *  So, for understanding purpose, I am changing only class Soy based on their size.
+ *  
  */
 
 
 public class Main {
 	public static void main(String[] args) {
 		Beverage espresso = new Espresso();
-		System.out.println(espresso.getDescription() + " "+espresso.cost());
+		System.out.println(espresso.getDescription() + " "+espresso.cost()+" "+espresso.getSize());
 		
 		Beverage beverage2 = new HouseBlend();
 		beverage2 = new Mocha(beverage2);
 		beverage2 = new Mocha(beverage2);
 		beverage2 = new Whip(beverage2);
+		beverage2 = new Soy(beverage2);
 		System.out.println("Beverage with double Mocha and Whip is: \n"+beverage2.getDescription()+" "+beverage2.cost());
 	}
 	
