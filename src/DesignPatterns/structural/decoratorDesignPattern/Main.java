@@ -48,7 +48,11 @@ import DesignPatterns.structural.decoratorDesignPattern.condimentDecoratorTypes.
  *  and now for each decorator we have cost for each size like for Soy, cost for tall(.10), grande(0.15),
  *  venti(0.20).
  *  So, for understanding purpose, I am changing only class Soy based on their size.
+ * 
  *  
+ *  Real Time use case:
+ *  -> used in Java I/O libraries implementation.
+ *  -> Refer pg No. 100 of book
  */
 
 
