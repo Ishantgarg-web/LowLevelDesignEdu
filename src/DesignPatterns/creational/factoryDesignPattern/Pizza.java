@@ -14,6 +14,10 @@ public abstract class Pizza {
 		return name;
 	}
 	
+	public void setName(String name) {
+		this.name = name;
+	}
+	
 	public void prepare() {
 		System.out.println("Preparing "+name);
 		System.out.println("Tossing dough..."+dough);
