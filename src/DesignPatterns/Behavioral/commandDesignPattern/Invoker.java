@@ -4,15 +4,31 @@ public class Invoker {
 	// This is waitress and can do things -> takeOrder(), orderUp()
 	// it can do things for a slot(Command) and on order.
 	
-	Command slot;
+	// Now, we will add 7 slots to RemoteControl(invoker)
+	Command[] onCommands;
+	Command[] offCommands;
+	
 	public Invoker() {
+		onCommands = new Command[7];
+		offCommands = new Command[7];
 		
+		Command noCommand = new NoCommand();
+		for (int i=0;i<7;i++) {
+			onCommands[i] = noCommand;
+			offCommands[i] = noCommand;
+		}
 	}
 	
-	public void setCommand(Command command) {
-		slot = command;
+	public void setCommand(int slot,Command onCommand,Command offCommand) {
+		onCommands[slot] = onCommand;
+		offCommands[slot] = offCommand;
 	}
-	public void buttonPressed() {
-		slot.execute();
+	
+	public void onButtonWasPressed(int slot) {
+		onCommands[slot].execute();
+	}
+	
+	public void offButtonWasPressed(int slot) {
+		offCommands[slot].execute();
 	}
 }

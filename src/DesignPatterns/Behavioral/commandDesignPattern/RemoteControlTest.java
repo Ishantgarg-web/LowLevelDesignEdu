@@ -1,5 +1,18 @@
 package DesignPatterns.Behavioral.commandDesignPattern;
 
+import DesignPatterns.Behavioral.commandDesignPattern.concreteCommands.CeilingFanOffCommand;
+import DesignPatterns.Behavioral.commandDesignPattern.concreteCommands.CeilingFanOnCommand;
+import DesignPatterns.Behavioral.commandDesignPattern.concreteCommands.GarageDoorCloseCommand;
+import DesignPatterns.Behavioral.commandDesignPattern.concreteCommands.GarageDoorOpenCommand;
+import DesignPatterns.Behavioral.commandDesignPattern.concreteCommands.LightOffCommand;
+import DesignPatterns.Behavioral.commandDesignPattern.concreteCommands.LightOnCommand;
+import DesignPatterns.Behavioral.commandDesignPattern.concreteCommands.StereoOffCommand;
+import DesignPatterns.Behavioral.commandDesignPattern.concreteCommands.StereoWithCDCommand;
+import DesignPatterns.Behavioral.commandDesignPattern.receiver.CeilingFan;
+import DesignPatterns.Behavioral.commandDesignPattern.receiver.GarageDoor;
+import DesignPatterns.Behavioral.commandDesignPattern.receiver.Light;
+import DesignPatterns.Behavioral.commandDesignPattern.receiver.Stereo;
+
 /**
  * 
  * @author ishant
@@ -29,16 +42,44 @@ package DesignPatterns.Behavioral.commandDesignPattern;
  * orderUp()     ->     buttonPressed()
  * makeOrder()   ->     execute()
  * 
- * 
+ * till now commit is: dc3b19c(modify comments)
+ * Original requirement:
+ * Now, we will make seven slots in our remote control, and each slot has an on and off button.
  */
 
 public class RemoteControlTest {
 	public static void main(String[] args) {
 		Invoker invoker = new Invoker();
-		Light light = new Light(); // receiver
-		LightOnCommand lightOnCommand = new LightOnCommand(light); // order
 		
-		invoker.setCommand(lightOnCommand);
-		invoker.buttonPressed();
+		Light livingRoomLight = new Light("Living Room Light"); // receiver
+		Light kitchenLight = new Light("Kitchen Light"); // receiver
+		CeilingFan ceilingFan = new CeilingFan("Living Room"); // receiver
+		GarageDoor garageDoor = new GarageDoor("Garage"); // receiver
+		Stereo stereo = new Stereo("Living Room"); // receiver
+		
+		LightOnCommand livingRoomLightOn = new LightOnCommand(livingRoomLight); // order
+		LightOffCommand livingRoomLightOff = new LightOffCommand(livingRoomLight);
+		
+		LightOnCommand kitchenLightOn = new LightOnCommand(kitchenLight); // order
+		LightOffCommand kitchenLightOff = new LightOffCommand(kitchenLight);
+		
+		CeilingFanOnCommand livingRoomCeilingFanOn = new CeilingFanOnCommand(ceilingFan);
+		CeilingFanOffCommand livingRoomCeilingFanOff = new CeilingFanOffCommand(ceilingFan);
+		
+		GarageDoorOpenCommand doorOpenCommand = new GarageDoorOpenCommand(garageDoor);
+		GarageDoorCloseCommand doorCloseCommand = new GarageDoorCloseCommand(garageDoor);
+		
+		StereoWithCDCommand stereoWithCDCommand = new StereoWithCDCommand(stereo);
+		StereoOffCommand stereoOffCommand = new StereoOffCommand(stereo);
+		
+		invoker.setCommand(0,livingRoomLightOn,livingRoomLightOff);
+		invoker.setCommand(1,kitchenLightOn,kitchenLightOff);
+		invoker.setCommand(2,livingRoomCeilingFanOn,livingRoomCeilingFanOff);
+		invoker.setCommand(3,doorOpenCommand,doorCloseCommand);
+		invoker.setCommand(4,stereoWithCDCommand,stereoOffCommand);
+		
+		invoker.onButtonWasPressed(0);
+		invoker.offButtonWasPressed(3);
+		invoker.onButtonWasPressed(6);
 	}
 }

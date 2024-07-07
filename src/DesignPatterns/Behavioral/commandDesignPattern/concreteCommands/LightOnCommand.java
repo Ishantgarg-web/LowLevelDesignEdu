@@ -1,4 +1,7 @@
-package DesignPatterns.Behavioral.commandDesignPattern;
+package DesignPatterns.Behavioral.commandDesignPattern.concreteCommands;
+
+import DesignPatterns.Behavioral.commandDesignPattern.Command;
+import DesignPatterns.Behavioral.commandDesignPattern.receiver.Light;
 
 public class LightOnCommand implements Command{
 	
