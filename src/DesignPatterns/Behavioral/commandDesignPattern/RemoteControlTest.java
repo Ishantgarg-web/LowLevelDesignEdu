@@ -49,6 +49,10 @@ import DesignPatterns.Behavioral.commandDesignPattern.receiver.Stereo;
  * till now commit is: 42ccfdb(Added 7 slots for the remoteControl)
  * Now, here the command interface is behaving like functional interface, because it has only
  * one abstract method, so here we can use Lambda Expression.
+ * for Lambda expression code: see commit: 1622374(Improved readibility of code)
+ * 
+ * 
+ * 
  */
 
 public class RemoteControlTest {
