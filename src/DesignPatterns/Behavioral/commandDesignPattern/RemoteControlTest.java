@@ -45,6 +45,10 @@ import DesignPatterns.Behavioral.commandDesignPattern.receiver.Stereo;
  * till now commit is: dc3b19c(modify comments)
  * Original requirement:
  * Now, we will make seven slots in our remote control, and each slot has an on and off button.
+ * 
+ * till now commit is: 42ccfdb(Added 7 slots for the remoteControl)
+ * Now, here the command interface is behaving like functional interface, because it has only
+ * one abstract method, so here we can use Lambda Expression.
  */
 
 public class RemoteControlTest {
@@ -57,8 +61,9 @@ public class RemoteControlTest {
 		GarageDoor garageDoor = new GarageDoor("Garage"); // receiver
 		Stereo stereo = new Stereo("Living Room"); // receiver
 		
-		LightOnCommand livingRoomLightOn = new LightOnCommand(livingRoomLight); // order
-		LightOffCommand livingRoomLightOff = new LightOffCommand(livingRoomLight);
+		// We can use Lambda expression here.
+//		LightOnCommand livingRoomLightOn = new LightOnCommand(livingRoomLight); // order
+//		LightOffCommand livingRoomLightOff = new LightOffCommand(livingRoomLight);
 		
 		LightOnCommand kitchenLightOn = new LightOnCommand(kitchenLight); // order
 		LightOffCommand kitchenLightOff = new LightOffCommand(kitchenLight);
@@ -72,7 +77,13 @@ public class RemoteControlTest {
 		StereoWithCDCommand stereoWithCDCommand = new StereoWithCDCommand(stereo);
 		StereoOffCommand stereoOffCommand = new StereoOffCommand(stereo);
 		
-		invoker.setCommand(0,livingRoomLightOn,livingRoomLightOff);
+//		invoker.setCommand(0,livingRoomLightOn,livingRoomLightOff);
+		// With the help of Lambda expression, we can reduce number of classes in our code.
+		invoker.setCommand(0,
+				() -> livingRoomLight.on(), 
+				() -> livingRoomLight.off()
+			);
+		
 		invoker.setCommand(1,kitchenLightOn,kitchenLightOff);
 		invoker.setCommand(2,livingRoomCeilingFanOn,livingRoomCeilingFanOff);
 		invoker.setCommand(3,doorOpenCommand,doorCloseCommand);
