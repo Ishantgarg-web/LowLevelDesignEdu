@@ -35,8 +35,8 @@ package DesignPatterns.Behavioral.commandDesignPattern;
 public class RemoteControlTest {
 	public static void main(String[] args) {
 		Invoker invoker = new Invoker();
-		Light light = new Light(); // receiver of the request.
-		LightOnCommand lightOnCommand = new LightOnCommand(light); // receiver
+		Light light = new Light(); // receiver
+		LightOnCommand lightOnCommand = new LightOnCommand(light); // order
 		
 		invoker.setCommand(lightOnCommand);
 		invoker.buttonPressed();
