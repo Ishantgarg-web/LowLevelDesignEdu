@@ -51,7 +51,7 @@ import DesignPatterns.Behavioral.commandDesignPattern.receiver.Stereo;
  * one abstract method, so here we can use Lambda Expression.
  * for Lambda expression code: see commit: 1622374(Improved readibility of code)
  * 
- * 
+ * Now, I moving my code from commit 42ccfdb -> dc3b19c, to add undo functionality.
  * 
  */
 
@@ -66,8 +66,8 @@ public class RemoteControlTest {
 		Stereo stereo = new Stereo("Living Room"); // receiver
 		
 		// We can use Lambda expression here.
-//		LightOnCommand livingRoomLightOn = new LightOnCommand(livingRoomLight); // order
-//		LightOffCommand livingRoomLightOff = new LightOffCommand(livingRoomLight);
+		LightOnCommand livingRoomLightOn = new LightOnCommand(livingRoomLight); // order
+		LightOffCommand livingRoomLightOff = new LightOffCommand(livingRoomLight);
 		
 		LightOnCommand kitchenLightOn = new LightOnCommand(kitchenLight); // order
 		LightOffCommand kitchenLightOff = new LightOffCommand(kitchenLight);
@@ -81,20 +81,22 @@ public class RemoteControlTest {
 		StereoWithCDCommand stereoWithCDCommand = new StereoWithCDCommand(stereo);
 		StereoOffCommand stereoOffCommand = new StereoOffCommand(stereo);
 		
-//		invoker.setCommand(0,livingRoomLightOn,livingRoomLightOff);
+		invoker.setCommand(0,livingRoomLightOn,livingRoomLightOff);
 		// With the help of Lambda expression, we can reduce number of classes in our code.
-		invoker.setCommand(0,
-				() -> livingRoomLight.on(), 
-				() -> livingRoomLight.off()
-			);
-		
+//		invoker.setCommand(0,
+//				() -> livingRoomLight.on(), 
+//				() -> livingRoomLight.off()
+//			);
+//		
 		invoker.setCommand(1,kitchenLightOn,kitchenLightOff);
 		invoker.setCommand(2,livingRoomCeilingFanOn,livingRoomCeilingFanOff);
 		invoker.setCommand(3,doorOpenCommand,doorCloseCommand);
 		invoker.setCommand(4,stereoWithCDCommand,stereoOffCommand);
 		
 		invoker.onButtonWasPressed(0);
+		invoker.undoButtonPressed();
 		invoker.offButtonWasPressed(3);
-		invoker.onButtonWasPressed(6);
+		invoker.onButtonWasPressed(6); // doing nothing, because we have not setup slot for this.
+		invoker.undoButtonPressed();
 	}
 }

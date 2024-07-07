@@ -7,7 +7,7 @@ public class Invoker {
 	// Now, we will add 7 slots to RemoteControl(invoker)
 	Command[] onCommands;
 	Command[] offCommands;
-	
+	Command lastCommand; // it will store the reference of lastCommand executed.
 	public Invoker() {
 		onCommands = new Command[7];
 		offCommands = new Command[7];
@@ -17,6 +17,7 @@ public class Invoker {
 			onCommands[i] = noCommand;
 			offCommands[i] = noCommand;
 		}
+		lastCommand = noCommand;
 	}
 	
 	public void setCommand(int slot,Command onCommand,Command offCommand) {
@@ -26,9 +27,16 @@ public class Invoker {
 	
 	public void onButtonWasPressed(int slot) {
 		onCommands[slot].execute();
+		lastCommand = onCommands[slot];
 	}
 	
 	public void offButtonWasPressed(int slot) {
 		offCommands[slot].execute();
+		lastCommand = offCommands[slot];
+	}
+	
+	public void undoButtonPressed() {
+		System.out.println("Undo Button pressed");
+		lastCommand.execute();
 	}
 }
