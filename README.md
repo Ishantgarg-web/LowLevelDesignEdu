@@ -2,6 +2,7 @@ Hello Viewers,
 
 This repository based on **System Design** concepts(mainly on LLD(**Low-Level Design**)).
 
+
 Here, you will get insights of Design patterns, Design problems and many many more stuff.
 
 ## Design Patterns
@@ -19,3 +20,7 @@ Here, you will get insights of Design patterns, Design problems and many many mo
 - [Command](https://github.com/Ishantgarg-web/LowLevelDesignEdu/tree/master/src/DesignPatterns/Behavioral/commandDesignPattern)
 - [Observer](https://github.com/Ishantgarg-web/LowLevelDesignEdu/tree/master/src/DesignPatterns/Behavioral/observerDesignPattern)
 - [Strategy](https://github.com/Ishantgarg-web/LowLevelDesignEdu/tree/master/src/DesignPatterns/Behavioral/strategyDesignPattern)
+
+*References:*
+- "Head First Design Patterns Book"
+- [awesome-low-level-design](https://github.com/ashishps1/awesome-low-level-design)
