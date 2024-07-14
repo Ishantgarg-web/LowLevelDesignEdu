@@ -1,5 +1,10 @@
 package DesignPatterns.structural.adaptorDesignPattern;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Enumeration;
+import java.util.Iterator;
+
 /**
  * 
  * @author ishant
@@ -29,6 +34,12 @@ package DesignPatterns.structural.adaptorDesignPattern;
  * but your existing system uses duck everywhere now requirement is you have to embed the turkey duck
  * also in it.
  * 
+ * [NEW_REQUIREMENT]:
+ * problem_statement: There is a inbuilt java legacy interface Enumeration, that has two functions
+ * hasNextElements() and nextElement(), but now all collections uses Iterator interface that has three
+ * functions hasNext(), next(), remove(). So you need to make a converterFromEnumerationToIterator
+ * and fromInteratorToEnumeration.
+ * 
  */
 
 
@@ -44,5 +55,15 @@ public class Main {
 		Duck turkeyDuckConverted = new TurkeyAdaptee(turkeyDuck);
 		turkeyDuckConverted.quack();
 		turkeyDuckConverted.fly();
+		
+		// use case of IteratorToEnumeration convertor.
+		// we will take an ArrayList that support iterator interface but not Enumerations.
+		ArrayList<Integer> al = new ArrayList<>();
+		al.addAll(Arrays.asList(1,2,3,5,6,10));
+		Iterator<Integer> iterator = al.iterator();
+		Enumeration<Object> enumeration = new IteratorToEnumeration(iterator);
+		while(enumeration.hasMoreElements()) {
+			System.out.print(enumeration.nextElement()+" ");
+		}
 	}
 }
